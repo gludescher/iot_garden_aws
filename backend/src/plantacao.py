@@ -32,7 +32,7 @@ class Plantacao(db.Model):
 class PlantacaoSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ('id', 'planta', 'tempMin', 'tempMax', 'umidMin', 'umidMax', 'idUsuario')
+        fields = ('idPlantacao', 'planta', 'tempMin', 'tempMax', 'umidMin', 'umidMax', 'idUsuario')
 
 plantacao_schema = PlantacaoSchema()
 plantacoes_schema = PlantacaoSchema(many=True)

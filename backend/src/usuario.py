@@ -28,7 +28,7 @@ class Usuario(db.Model):
 class UsuarioSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ('id', 'nome', 'login', 'senha')
+        fields = ('idUsuario', 'nome', 'login', 'senha')
 
 usuario_schema = UsuarioSchema()
 usuarios_schema = UsuarioSchema(many=True)
@@ -41,11 +41,11 @@ def usuario_homepage():
     response = {
         "status_code": 200,
         "message": text,
-        "/usuario [POST]": "adiciona um usuário ao evento",
-        "/usuario [GET]": "retorna as informações de todos os usuários",
-        "/usuario/<id> [GET]": "retorna as informações do usuário com o id especificado",
-        "/usuario/<id> [PUT]": "atualiza as informações do usuário com o id especificado",
-        "/usuario/<id> [DELETE]": "deleta o usuário com o id especificado",
+        "/usuario [POST]": "adiciona um usuario ao sistema",
+        "/usuario [GET]": "retorna as informacoes de todos os usuarios",
+        "/usuario/<id> [GET]": "retorna as informacoes do usuario com o id especificado",
+        "/usuario/<id> [PUT]": "atualiza as informacoes do usuario com o id especificado",
+        "/usuario/<id> [DELETE]": "deleta o usuario com o id especificado",
     } 
     return jsonify(response)
 

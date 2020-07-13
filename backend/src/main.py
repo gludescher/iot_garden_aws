@@ -12,5 +12,6 @@ import requests
 if __name__ == '__main__':
     from usuario import Usuario
     from plantacao import Plantacao
+    from sensor import Sensor
     db.create_all()
     app.run(debug=True)

@@ -37,7 +37,7 @@ class Sensor(db.Model):
 class SensorSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ('id', 'codigo', 'tipo', 'idUsuario')
+        fields = ('idSensor', 'codigo', 'tipo', 'idUsuario')
 
 sensor_schema = SensorSchema()
 sensores_schema = SensorSchema(many=True)

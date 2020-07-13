@@ -27,6 +27,7 @@ class Usuario(db.Model):
     login = db.Column(db.String(30), unique=True)
     senha = db.Column(db.String(30), unique=False)
     plantacao = db.relationship("Plantacao")
+    sensor = db.relationship("Sensor")
 
     def __init__(self, nome, login, senha):
         self.nome = nome

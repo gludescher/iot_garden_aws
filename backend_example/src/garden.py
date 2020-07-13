@@ -18,8 +18,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'False'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
-if __name__ == '__main__':
-    import usuario
-    import plantacao
-    db.create_all()
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     import usuario
+#     import plantacao
+#     db.create_all()
+#     app.run(debug=True)

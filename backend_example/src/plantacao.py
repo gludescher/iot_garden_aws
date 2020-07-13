@@ -7,7 +7,7 @@ import json
 import os
 import datetime
 import requests
-# from garden import * 
+from garden import * 
 # from usuario import Usuario
 
 # app = Flask(__name__)
@@ -76,7 +76,7 @@ def add_plantacao():
         umidMin = request.json['umidMin']
         umidMax = request.json['umidMax']
 
-        new_plantacao = Usuario(planta, tempMin, tempMax, umidMin, umidMax, idUsuario)
+        new_plantacao = Plantacao(planta, tempMin, tempMax, umidMin, umidMax, idUsuario)
         db.session.add(new_plantacao)
         db.session.commit()
 
@@ -91,7 +91,7 @@ def add_plantacao():
 @app.route("/plantacao", methods=['GET'])
 def get_plantacao():
     if request.method == 'GET':
-        all_plantacoes = Usuario.query.all()
+        all_plantacoes = Plantacao.query.all()
         
         response = plantacoes_schema.dump(all_plantacoes)
         

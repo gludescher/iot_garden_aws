@@ -2,3 +2,5 @@
 .vscode/settings.json
 
 backend_example/src/garden.sqlite
+
+backend_example/src/__pycache__/

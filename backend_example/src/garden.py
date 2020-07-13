@@ -8,7 +8,6 @@ import os
 import datetime
 import requests
 
-
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -20,4 +19,7 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 if __name__ == '__main__':
+    import usuario
+    import plantacao
+    db.create_all()
     app.run(debug=True)

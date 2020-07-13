@@ -3,22 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from sqlalchemy import Column, Integer, DateTime
 from flask_cors import CORS
+from garden_utils import *
 import json 
 import os
 import datetime
 import requests
-from garden import * 
-# from usuario import Usuario
-
-# app = Flask(__name__)
-# cors = CORS(app)
-
-# basedir = os.path.abspath(os.path.dirname(__file__))
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'garden.sqlite')
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'False'
-
-# db = SQLAlchemy(app)
-# ma = Marshmallow(app)
 
 ################################################## M O D E L S ##################################################
 class Plantacao(db.Model):
@@ -29,7 +18,7 @@ class Plantacao(db.Model):
     tempMax = db.Column(db.Float(10), unique=False)
     umidMin = db.Column(db.Float(10), unique=False)
     umidMax = db.Column(db.Float(10), unique=False)
-    idUsuario = db.Column(db.Integer, db.ForeignKey("usuarios.idUsuario", ondelete='CASCADE'))
+    idUsuario = db.Column(db.Integer, db.ForeignKey('usuarios.idUsuario', ondelete='CASCADE'))
 
     def __init__(self, planta, tempMin, tempMax, umidMin, umidMax, idUsuario):
         self.planta = planta
@@ -139,6 +128,3 @@ def plantacao_delete(id):
 
 
 ############################################################################################################
-
-if __name__ == '__main__':
-    app.run(debug=True)

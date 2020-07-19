@@ -10,3 +10,7 @@ aws_integrator/node_modules/
 aws_integrator/.serverless/requirements/
 
 aws_integrator/.serverless/requirements
+
+aws_integrator/.dynamodb/
+
+aws_integrator/__pycache__/

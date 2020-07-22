@@ -21,22 +21,23 @@ export class HomeScreen extends React.Component<Props, State> {
     }
   }
 
-  componentDidMount = async () => {
-    await this.getAPIUserValues;
+  componentDidMount() {
+    this.getAPIUserValues;
   }
 
   render() {
     if (this.state.initialLoading) {
-      <>
-        <HeaderComponent pageName={"Home"} navigation={this.props.navigation} />
-        <LoadingScreen isLoading={this.state.initialLoading} text={this.state.loadingText} />
-      </>
+      return (
+        <>
+          <HeaderComponent pageName={"Home"} navigation={this.props.navigation} />
+          <LoadingScreen isLoading={this.state.initialLoading} text={this.state.loadingText} />
+        </>
+      )
     }
 
     return (
       <>
         <HeaderComponent pageName={"Home"} navigation={this.props.navigation} />
-        <LoadingScreen isLoading={this.state.initialLoading} text={this.state.loadingText} />
       </>
     );
   }
@@ -58,12 +59,15 @@ export class HomeScreen extends React.Component<Props, State> {
     // }
 
     // const successFunction = () => {
-      
+
     // }
     // await NetInfoFetch(url, null, noConnectionFunction, badRequestFunction, errorFunction, successFunction);
-    
+
     // Mockado por enquanto
-    const responseJson = UserMockedFetch;
+    // const responseJson = UserMockedFetch;
+    setTimeout(() => {
+      this.setState({ initialLoading: false })
+    }, 2000)
 
   }
 }

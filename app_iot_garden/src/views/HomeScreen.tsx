@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button } from 'react-native';
 import { HeaderComponent } from '../../components';
 
 interface Props {
-  navigation: any
+  navigation: any,
 }
 
 interface State {

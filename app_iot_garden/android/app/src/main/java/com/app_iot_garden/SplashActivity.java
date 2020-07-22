@@ -1,4 +1,4 @@
-package com.rn_splashscreen_tutorial; // Change this to your package name.
+package com.app_iot_garden;
 
 import android.content.Intent;
 import android.os.Bundle;

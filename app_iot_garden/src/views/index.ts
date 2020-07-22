@@ -1,2 +1,3 @@
 export * from './HomeScreen';
-export * from './NotificationScreen';
+export * from './MinhasPlantasScreen';
+export * from './LoginScreen/LoginScreen';

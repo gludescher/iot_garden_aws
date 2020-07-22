@@ -11,7 +11,9 @@
     "typescript": "yarn tsc"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/netinfo": "^5.9.5",
     "@react-navigation/drawer": "^5.8.6",
     "@react-navigation/native": "^5.7.1",
     "add": "^2.0.6",
@@ -24,6 +26,7 @@
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
     "react-native-splash-screen": "^3.2.0",
+    "remove": "^0.1.5",
     "yarn": "^1.22.4"
   },
   "devDependencies": {

@@ -15,11 +15,14 @@ export default class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="Login">
+          <Drawer.Screen name="Login" component={View.LoginScreen} />
           <Drawer.Screen name="Home" component={View.HomeScreen} />
-          <Drawer.Screen name="Notifications" component={View.NotificationsScreen} />
+          <Drawer.Screen name="Minhas Plantas" component={View.MinhasPlantasScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
     )
-  }
+  }  
 }
+
+console.disableYellowBox = true; // <-- This is to remove the react-navigation-swiper deprecated component warning

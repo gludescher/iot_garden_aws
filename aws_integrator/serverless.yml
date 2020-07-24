@@ -8,7 +8,7 @@ plugins:
   - serverless-dynamodb-local
 
 custom:
-  tableName: 'users-table-${self:provider.stage}'
+  tableName: 'garden-users-${self:provider.stage}'
   wsgi:
     app: app.app
     packRequirements: false
@@ -52,12 +52,10 @@ resources:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-          -
-            AttributeName: userId
+          - AttributeName: login
             AttributeType: S
         KeySchema:
-          -
-            AttributeName: userId
+          - AttributeName: login
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

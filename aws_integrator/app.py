@@ -1,11 +1,37 @@
 # app.py
 
-import os
+# ================================================================= #
+# Para rodar local, abra dois terminais.
+#
+# No primeiro:
+#   $ .\venv\Scripts\activate
+#   $ serverless dynamodb start
+#
+# No segundo:
+#   $ .\venv\Scripts\activate
+#   $ serverless wsgi serve
+#
+# A aplicação roda em http://localhost:5000
+# Quando salvar o projeto, a aplicação é atualizada automaticamente. 
+# ================================================================= #
 
+# ================================================================= #
+# Para rodar na AWS, faça em um terminal:
+#   $ .\venv\Scripts\activate 
+#   $ serverless deploy
+#
+# A aplicação roda em: 
+# https://on00qnj8jh.execute-api.us-east-1.amazonaws.com/dev
+# Quando alterar o projeto, precisa dar deploy novamente.
+# ================================================================= #
+
+import os
 import boto3
 import pprint
-
+import uuid
 from flask import Flask, jsonify, request
+# from dynamodb_json import json_util as dynamodb_json
+
 app = Flask(__name__)
 
 USERS_TABLE = os.environ['USERS_TABLE']
@@ -25,40 +51,75 @@ else:
 def hello():  
     return "Welcome to the IOT Garden API"
 
-@app.route("/users/<string:user_id>")
-def get_user(user_id):
+# ============================== GET ============================== #
+
+@app.route("/usuarios/<string:login>")
+def get_user(login):
     resp = client.get_item(
         TableName=USERS_TABLE,
         Key={
-            'userId': { 'S': user_id }
+            'login': { 'S': login }
         }
     )
     item = resp.get('Item')
     if not item:
-        return jsonify({'error': 'User does not exist'}), 404
+        return jsonify({'error': 'Usuário não encontrado'}), 404
 
     return jsonify({
-        'userId': item.get('userId').get('S'),
-        'name': item.get('name').get('S')
+        'login': item.get('login').get('S'),
+        'nome': item.get('nome').get('S'),
+        'plantacoes': item.get('plantacoes').get('M')
     })
 
+# ================================================================= #
 
-@app.route("/users", methods=["POST"])
+@app.route("/usuarios", methods=["POST"])
 def create_user():
-    user_id = request.json.get('userId')
-    name = request.json.get('name')
-    if not user_id or not name:
-        return jsonify({'error': 'Please provide userId and name'}), 400
+    login = request.json.get('login')
+    nome = request.json.get('nome')
+    if not login or not nome:
+        return jsonify({'error': 'Por favor, insira login e nome'}), 400
 
     resp = client.put_item(
         TableName=USERS_TABLE,
         Item={
-            'userId': {'S': user_id },
-            'name': {'S': name }
+            'login': {'S': login },
+            'nome': {'S': nome },
+            'plantacoes': {'M': {}},
         }
     )
 
     return jsonify({
-        'userId': user_id,
-        'name': name
+        'login': {'S': login },
+        'nome': {'S': nome },        
     })
+
+@app.route("/plantacoes", methods=["POST"])
+def create_plantacao():
+    # idUsuario = uuid.uuid4() # gera um id aleatorio
+    login = request.json.get('login')
+    idPlantacao = request.json.get('idPlantacao')
+    planta = request.json.get('planta')
+    plantacao = {
+        "planta": {"S": planta},
+        "sensores": {"M": {}}, 
+    }
+
+    resp = client.update_item(
+        TableName=USERS_TABLE,
+        Key={
+            'login': { 'S': login },
+        },
+        UpdateExpression="SET #plantacoes.#idPlantacao = :dict",
+        ExpressionAttributeNames= {
+            "#plantacoes": "plantacoes",
+            "#idPlantacao": idPlantacao,
+        },
+        ExpressionAttributeValues= {
+            ":dict": { "M": plantacao}
+        },
+        ConditionExpression='attribute_not_exists(#plantacoes.#idPlantacao)',
+        ReturnValues="ALL_NEW"
+    )
+
+    return resp

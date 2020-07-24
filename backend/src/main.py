@@ -15,5 +15,3 @@ if __name__ == '__main__':
     from sensor import Sensor
     db.create_all()
     app.run(debug=True)
-
-    bla = 0

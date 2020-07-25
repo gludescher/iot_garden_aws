@@ -165,7 +165,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-flask/dev/1595185988251-2020-07-19T19:13:08.251Z/serverless-flask.zip"
+          "S3Key": "serverless/serverless-flask/dev/1595641193341-2020-07-25T01:39:53.341Z/serverless-flask.zip"
         },
         "FunctionName": "serverless-flask-dev-app",
         "Handler": "wsgi_handler.handler",
@@ -180,7 +180,7 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "USERS_TABLE": "users-table-dev"
+            "USERS_TABLE": "garden-users-dev"
           }
         }
       },
@@ -188,14 +188,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionaUB6wI5ypPB8vR95LDxdFUuqLxTGKvPaT0FKiujCE": {
+    "AppLambdaVersionS4IgCdVgxVzhfFnubWYp3chiEGVIXRHmtG7hraOKCmw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "/bUyFSJ7zzyheE4VuDx0hRCPft23UJBCL0+J38oPzpM="
+        "CodeSha256": "wDgPnS2m8QfcgA67TU3nnY6cPD2vvddsxDZ4IumQsq8="
       }
     },
     "ApiGatewayRestApi": {
@@ -314,7 +314,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1595185938221": {
+    "ApiGatewayDeployment1595641176825": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -369,13 +369,13 @@
       "Properties": {
         "AttributeDefinitions": [
           {
-            "AttributeName": "userId",
+            "AttributeName": "login",
             "AttributeType": "S"
           }
         ],
         "KeySchema": [
           {
-            "AttributeName": "userId",
+            "AttributeName": "login",
             "KeyType": "HASH"
           }
         ],
@@ -383,7 +383,7 @@
           "ReadCapacityUnits": 1,
           "WriteCapacityUnits": 1
         },
-        "TableName": "users-table-dev"
+        "TableName": "garden-users-dev"
       }
     }
   },
@@ -396,7 +396,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionaUB6wI5ypPB8vR95LDxdFUuqLxTGKvPaT0FKiujCE"
+        "Ref": "AppLambdaVersionS4IgCdVgxVzhfFnubWYp3chiEGVIXRHmtG7hraOKCmw"
       }
     },
     "ServiceEndpoint": {

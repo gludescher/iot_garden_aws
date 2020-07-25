@@ -30,7 +30,7 @@ import boto3
 import pprint
 import uuid
 from flask import Flask, jsonify, request
-# from dynamodb_json import json_util as dynamodb_json
+from dynamodb_json import json_util as dynamodb_json
 
 app = Flask(__name__)
 
@@ -65,11 +65,7 @@ def get_user(login):
     if not item:
         return jsonify({'error': 'Usuário não encontrado'}), 404
 
-    return jsonify({
-        'login': item.get('login').get('S'),
-        'nome': item.get('nome').get('S'),
-        'plantacoes': item.get('plantacoes').get('M')
-    })
+    return dynamodb_json.loads(item)
 
 # ================================================================= #
 
@@ -119,6 +115,39 @@ def create_plantacao():
             ":dict": { "M": plantacao}
         },
         ConditionExpression='attribute_not_exists(#plantacoes.#idPlantacao)',
+        ReturnValues="ALL_NEW"
+    )
+
+    return resp
+
+@app.route("/sensores", methods=["POST"])
+def create_sensor():
+    # idUsuario = uuid.uuid4() # gera um id aleatorio
+    login = request.json.get('login')
+    idPlantacao = request.json.get('idPlantacao')
+    idSensor = request.json.get('idSensor')
+    tipoSensor = request.json.get('tipoSensor')
+    sensor = {
+        "tipoSensor": {"S": tipoSensor},
+        "medicoes": {"M": {}}, 
+    }
+
+    resp = client.update_item(
+        TableName=USERS_TABLE,
+        Key={
+            'login': { 'S': login },
+        },
+        UpdateExpression="SET #plantacoes.#idPlantacao.#sensores.#idSensor = :dict",
+        ExpressionAttributeNames= {
+            "#plantacoes": "plantacoes",
+            "#idPlantacao": idPlantacao,
+            "#idSensor": idSensor,
+            "#sensores": "sensores",
+        },
+        ExpressionAttributeValues= {
+            ":dict": { "M": sensor}
+        },
+        ConditionExpression='attribute_not_exists(#plantacoes.#idPlantacao.#idSensor)',
         ReturnValues="ALL_NEW"
     )
 

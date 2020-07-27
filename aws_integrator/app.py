@@ -147,7 +147,39 @@ def create_sensor():
         ExpressionAttributeValues= {
             ":dict": { "M": sensor}
         },
-        ConditionExpression='attribute_not_exists(#plantacoes.#idPlantacao.#idSensor)',
+        ConditionExpression='attribute_not_exists(#plantacoes.#idPlantacao.#sensores.#idSensor)',
+        ReturnValues="ALL_NEW"
+    )
+
+    return resp
+
+@app.route("/medicoes", methods=["POST"])
+def create_medicao():
+    # idUsuario = uuid.uuid4() # gera um id aleatorio
+    login = request.json.get('login')
+    idPlantacao = request.json.get('idPlantacao')
+    idSensor = request.json.get('idSensor')
+    horaMedicao = request.json.get('horaMedicao')
+    medicao = dynamodb_json.dumps(dct=request.json.get('medicao'), as_dict=True)
+
+    resp = client.update_item(
+        TableName=USERS_TABLE,
+        Key={
+            'login': { 'S': login },
+        },
+        UpdateExpression="SET #plantacoes.#idPlantacao.#sensores.#idSensor.#medicoes.#horaMedicao = :dict",
+        ExpressionAttributeNames= {
+            "#plantacoes": "plantacoes",
+            "#idPlantacao": idPlantacao,
+            "#idSensor": idSensor,
+            "#sensores": "sensores",
+            "#medicoes": "medicoes",
+            "#horaMedicao": horaMedicao
+        },
+        ExpressionAttributeValues= {
+            ":dict": { "M": medicao}
+        },
+        ConditionExpression='attribute_not_exists(#plantacoes.#idPlantacao.#sensores.#idSensor.#medicoes.#horaMedicao)',
         ReturnValues="ALL_NEW"
     )
 

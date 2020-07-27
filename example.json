@@ -1,0 +1,28 @@
+{
+    "login": "ds",
+    "nome": "Dwight Schrute",
+    "plantacoes": {
+        "1": {
+            "planta": "Beterraba",
+            "sensores": {
+                "1": {
+                    "medicoes": {},
+                    "tipoSensor": "temp"
+                },
+                "2": {
+                    "medicoes": {},
+                    "tipoSensor": "umid"
+                }
+            }
+        },
+        "2": {
+            "planta": "Batata",
+            "sensores": {
+                "2": {
+                    "medicoes": {},
+                    "tipoSensor": "umid"
+                }
+            }
+        }
+    }
+}

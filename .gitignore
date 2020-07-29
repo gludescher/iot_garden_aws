@@ -5,12 +5,12 @@
 
 backend_example/src/__pycache__/
 
-aws_integrator/node_modules/
+node_modules/
 
-aws_integrator/.serverless/requirements/
+.serverless/requirements/
 
-aws_integrator/.serverless/requirements
+.serverless/requirements
 
-aws_integrator/.dynamodb/
+.dynamodb/
 
-aws_integrator/__pycache__/
+__pycache__/

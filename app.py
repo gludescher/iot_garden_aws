@@ -94,7 +94,7 @@ def create_user():
 def create_plantacao():
     # idUsuario = uuid.uuid4() # gera um id aleatorio
     login = request.json.get('login')
-    idPlantacao = request.json.get('idPlantacao')
+    idPlantacao = str(request.json.get('idPlantacao'))
     planta = request.json.get('planta')
     plantacao = {
         "planta": {"S": planta},

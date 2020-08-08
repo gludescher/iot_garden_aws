@@ -187,7 +187,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-flask/dev/1595811377949-2020-07-27T00:56:17.949Z/serverless-flask.zip"
+                "S3Key": "serverless/serverless-flask/dev/1596916038415-2020-08-08T19:47:18.415Z/serverless-flask.zip"
               },
               "FunctionName": "serverless-flask-dev-app",
               "Handler": "wsgi_handler.handler",
@@ -210,14 +210,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionkLqNEYFHqHdFkplXL4cH2w8iWf4sfSN7TKUc2xYkH4": {
+          "AppLambdaVersionYtfKvI8qVxWedRjTPYuoETUSwB7qB298L03VRi50": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "Y3WrVeqssSAWFNBITblBvY1krPcqQ0V0p8uvB3LFIOQ="
+              "CodeSha256": "J4wUe9cqIsJ3toBybb5Ypca+BiXjIdz0TY5S/PTMaiM="
             }
           },
           "ApiGatewayRestApi": {
@@ -336,7 +336,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1595811344764": {
+          "ApiGatewayDeployment1596915994799": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -418,7 +418,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionkLqNEYFHqHdFkplXL4cH2w8iWf4sfSN7TKUc2xYkH4"
+              "Ref": "AppLambdaVersionYtfKvI8qVxWedRjTPYuoETUSwB7qB298L03VRi50"
             }
           },
           "ServiceEndpoint": {
@@ -556,7 +556,7 @@
         "timeout": 6,
         "runtime": "python3.6",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionkLqNEYFHqHdFkplXL4cH2w8iWf4sfSN7TKUc2xYkH4"
+        "versionLogicalId": "AppLambdaVersionYtfKvI8qVxWedRjTPYuoETUSwB7qB298L03VRi50"
       }
     },
     "resources": {
@@ -589,10 +589,10 @@
     "serviceFilename": "serverless.yml",
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "D:\\Ludescher\\Poli\\Poli 2020\\LabRedes\\Projeto IoT\\iot_garden\\aws_integrator\\.serverless\\serverless-flask.zip"
+    "artifact": "D:\\Ludescher\\Poli\\Poli 2020\\LabRedes\\Projeto IoT\\iot_garden\\iot_garden_aws\\.serverless\\serverless-flask.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-flask/dev/1595811377949-2020-07-27T00:56:17.949Z",
+    "artifactDirectoryName": "serverless/serverless-flask/dev/1596916038415-2020-08-08T19:47:18.415Z",
     "artifact": "serverless-flask.zip"
   }
 }

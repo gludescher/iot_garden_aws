@@ -30,9 +30,11 @@ import boto3
 import pprint
 import uuid
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from dynamodb_json import json_util as dynamodb_json
 
 app = Flask(__name__)
+cors = CORS(app)
 
 USERS_TABLE = os.environ['USERS_TABLE']
 IS_OFFLINE = os.environ.get('IS_OFFLINE')
